@@ -23,10 +23,10 @@ public class UserController {
   return listOfUsers;
  }
  
- //@RequestMapping(value = "/getUser/id/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
- //public Users getUserById(@PathVariable Integer id) {
-  //return UserService.getUser(id);
- //}
+ @RequestMapping(value = "/getUser/id/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
+ public Users getUserById(@PathVariable Integer id) {
+  return UserService.getUser(id);
+ }
  
  @RequestMapping(value = "/getUser/mobile/{mobile}", method = RequestMethod.GET, headers = "Accept=application/json")
  public Users getUserByMobile(@PathVariable String mobile) {

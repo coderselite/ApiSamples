@@ -32,8 +32,11 @@ public class UserDAO {
  
  public Users getUser(String mobile) {
 	  Session session = this.sessionFactory.getCurrentSession();
-	  Users user = (Users) session.load(Users.class, new String(mobile));
-	  return user;
+	  List<Users> list = (List <Users>) session.createQuery("from Users U where U.mobile = :mobile").setParameter("mobile", mobile).list();
+			  if (list.size()>0) {
+			    return list.get(0);
+			  }
+			  return null;
 	 }
  
  public Users addUser(Users user) {

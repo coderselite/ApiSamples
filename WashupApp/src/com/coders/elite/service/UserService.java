@@ -18,10 +18,10 @@ public class UserService {
   return userDao.getAllUsers();
  }
  
- //@Transactional
- //public Users getUser(Integer id) {
-  ///return userDao.getUser(id);
- //}
+ @Transactional
+ public Users getUser(Integer id) {
+ return userDao.getUser(id);
+ }
  
  @Transactional
  public Users getUser(String mobile) {
@@ -41,5 +41,20 @@ public class UserService {
  @Transactional
  public void deleteUser(int id) {
   userDao.deleteUser(id);
+ }
+ 
+ @Transactional
+ public String validateUser(String mobile)
+ {
+	 Users user = this.getUser(mobile);
+	 if (user != null)
+	 {
+		 return "Registered User";
+	 }
+	 else
+	 {
+		 //OTP code
+		 return "New User";
+	 }
  }
 }
