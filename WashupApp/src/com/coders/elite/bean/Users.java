@@ -1,5 +1,7 @@
 package com.coders.elite.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +16,7 @@ import org.hibernate.annotations.Proxy;
  */
 @Entity
 @Table(name="USERS") @Proxy(lazy = false)
-public class Users{
+public class Users implements Serializable{
  
  @Id
  @Column(name="id")
