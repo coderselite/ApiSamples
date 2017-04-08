@@ -21,31 +21,37 @@ public class Users implements Serializable{
  @Id
  @Column(name="id")
  @GeneratedValue(strategy=GenerationType.IDENTITY)
- Integer id;
+ private Integer id;
  
  @Column(name="firstName")
- String firstName; 
+ private String firstName; 
  
  @Column(name="lastName")
- String lastName;
+ private String lastName;
  
  @Column(name="mobile")
- String mobile;
+ private String mobile;
  
  @Column(name="otp")
- String otp;
+ private String otp;
+ 
+ @Column(name="referralCode")
+ private String referralCode;
+ 
+ 
  
  public Users() {
   super();
  }
  
- public Users(int i, String firstName, String lastName, String mobile, String otp) {
+ public Users(int i, String firstName, String lastName, String mobile, String otp, String referralCode ) {
   super();
   this.id = i;
   this.firstName = firstName;
   this.lastName=lastName;
   this.mobile=mobile;
   this.otp=otp;
+  this.referralCode=referralCode;
  }
  
  public int getId() {
@@ -87,6 +93,15 @@ public String getOtp() {
 public void setOtp(String otp) {
  this.otp = otp;
  }
+
+public String getReferralCode() {
+	return referralCode;
+}
+
+public void setReferralCode(String referralCode) {
+	this.referralCode = referralCode;
+}
  
+
 }
  

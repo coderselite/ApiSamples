@@ -11,4 +11,5 @@ public interface UserDAO {
 	public Users addUser(Users user);
 	public void updateUser(Users user);
 	public void deleteUser(int id);
+	public Users verifyReferralCode( String referralCode );
 }

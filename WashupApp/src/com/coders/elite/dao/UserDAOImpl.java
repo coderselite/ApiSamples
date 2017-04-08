@@ -58,5 +58,15 @@ public class UserDAOImpl implements UserDAO {
   if (null != u) {
    session.delete(u);
   }
- } 
+ }
+ 
+public Users verifyReferralCode( String referralCode ){
+	 Session session = this.sessionFactory.getCurrentSession();
+	 @SuppressWarnings("unchecked")
+	List <Users> list = (List <Users> ) session.createQuery("from Users U where U.referralCode = :referralCode").setParameter("referralCode", referralCode).list();
+	 if (list.size()>0){
+		 return list.get(0);
+	 }
+	 return null;
+ }
 }

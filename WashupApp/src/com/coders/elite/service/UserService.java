@@ -12,5 +12,7 @@ public interface UserService {
 	public void updateUser(Users user);
 	public void deleteUser(int id);
 	public String validateUser(String mobile);
+	public String generateReferralCode();
+	public String verifyReferralCode();
 }
 
