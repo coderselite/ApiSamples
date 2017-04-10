@@ -1,15 +1,16 @@
 package com.coders.elite.controller;
 
 import java.util.List;
-import com.coders.elite.bean.Users;
-import com.coders.elite.service.UserService;
-import com.coders.elite.service.UserServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.coders.elite.bean.Users;
+import com.coders.elite.service.UserService;
  
 @RestController
 public class UserController {
@@ -17,9 +18,14 @@ public class UserController {
 	 @Autowired
 	 UserService userService;
 	 
+	 @RequestMapping(value = "/validateUser/mobile/{mobile}", method = RequestMethod.GET, headers = "Accept=application/json")
+	 public String validateUser(@PathVariable String mobile) {
+	  return userService.validateUser(mobile);
+	 }
+	 
 	 @RequestMapping(value = "/getAllUsers", method = RequestMethod.GET, headers = "Accept=application/json")
-	 public List getUsers() {	  
-		 List listOfUsers = userService.getAllUsers();
+	 public List<Users> getUsers() {	  
+		 List<Users> listOfUsers = userService.getAllUsers();
 		 return listOfUsers;
 	 }
 	 

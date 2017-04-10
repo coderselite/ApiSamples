@@ -5,7 +5,7 @@ import java.util.List;
 import com.coders.elite.bean.Users;
 
 public interface UserService {
-	public List getAllUsers();
+	public List<Users> getAllUsers();
 	public Users getUser(Integer id);
 	public Users getUser(String mobile);
 	public void addUser(Users user);

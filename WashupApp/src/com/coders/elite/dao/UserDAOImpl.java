@@ -18,9 +18,10 @@ public class UserDAOImpl implements UserDAO {
   this.sessionFactory = sf;
  }
  
- public List getAllUsers() {
+ @SuppressWarnings("unchecked")
+public List<Users> getAllUsers() {
   Session session = this.sessionFactory.getCurrentSession();
-  List userList = session.createQuery("from Users").list();
+  List<Users> userList = session.createQuery("from Users").list();
   return userList;
  }
  

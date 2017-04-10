@@ -18,10 +18,15 @@ import org.hibernate.annotations.Proxy;
 @Table(name="USERS") @Proxy(lazy = false)
 public class Users implements Serializable{
  
- @Id
- @Column(name="id")
+ /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+@Id
+ @Column(name="userId")
  @GeneratedValue(strategy=GenerationType.IDENTITY)
- private Integer id;
+ private Integer userId;
  
  @Column(name="firstName")
  private String firstName; 
@@ -31,10 +36,7 @@ public class Users implements Serializable{
  
  @Column(name="mobile")
  private String mobile;
- 
- @Column(name="otp")
- private String otp;
- 
+  
  @Column(name="referralCode")
  private String referralCode;
  
@@ -44,22 +46,21 @@ public class Users implements Serializable{
   super();
  }
  
- public Users(int i, String firstName, String lastName, String mobile, String otp, String referralCode ) {
+ public Users(int i, String firstName, String lastName, String mobile, String referralCode ) {
   super();
-  this.id = i;
+  this.userId = i;
   this.firstName = firstName;
   this.lastName=lastName;
   this.mobile=mobile;
-  this.otp=otp;
   this.referralCode=referralCode;
  }
  
  public int getId() {
-  return id;
+  return userId;
  }
  
  public void setId(int id) {
-  this.id = id;
+  this.userId = id;
  }
  
  public String getFirstName() {
@@ -84,14 +85,6 @@ public class Users implements Serializable{
 		 
 public void setMobile(String mobile) {
  this.mobile = mobile;
- }
-
-public String getOtp() {
- return otp;
- }
-			 
-public void setOtp(String otp) {
- this.otp = otp;
  }
 
 public String getReferralCode() {
