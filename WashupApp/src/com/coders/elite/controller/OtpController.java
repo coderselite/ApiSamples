@@ -32,4 +32,9 @@ public class OtpController {
   otpService.updateOtp(otp);
  }
  
+ @RequestMapping(value = "/deleteOtp/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
+ public void deleteOtp(@PathVariable("id") int id) {
+	 otpService.deleteOtp(id);  
+ } 
+ 
 }

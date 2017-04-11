@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.coders.elite.bean.Otp;
+import com.coders.elite.bean.Users;
  
 @Repository
 public class OtpDAOImpl implements OtpDAO {
@@ -36,13 +37,22 @@ public Otp getOtp(String mobile) {
  
  public void addOtp(Otp otp) {
   Session session = this.sessionFactory.getCurrentSession();
-  session.persist(otp);
+  session.save(otp);
  }
  
  public void updateOtp(Otp otp) {
   Session session = this.sessionFactory.getCurrentSession();
   session.update(otp);
  }
+ 
+ public void deleteOtp(int id) {
+	  Session session = this.sessionFactory.getCurrentSession();
+	  Otp o = (Otp) session.load(Users.class, new Integer(id));
+	  if (null != o) {
+	   session.delete(o);
+	  }
+	 }
+
  
  } 
 

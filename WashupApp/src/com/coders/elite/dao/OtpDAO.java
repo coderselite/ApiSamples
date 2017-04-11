@@ -13,5 +13,7 @@ public Otp getOtp(String mobile);
  
  public void updateOtp(Otp otp);
  
+ public void deleteOtp(int id);
+ 
  } 
 

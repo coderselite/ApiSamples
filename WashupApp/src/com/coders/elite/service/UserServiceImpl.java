@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import com.coders.elite.dao.OtpDAOImpl;
 import com.coders.elite.dao.UserDAOImpl;
@@ -138,12 +139,12 @@ public class UserServiceImpl implements UserService {
 	 @Transactional
 	 public String validateUser(String mobile){
 		 String otp = this.generateOtp();
+//		 this.sendOtp(otp, mobile);
 	   Users user = this.getUser(mobile);
 			 if (user != null)
 			 {
 				 Otp oldOtp = otpDao.getOtp(mobile);
 				 int otpId = oldOtp.getId();
-//				 this.sendOtp(otp, mobile);
 				 Otp updatedOtp = new Otp(otpId, otp, mobile);
 				 otpDao.updateOtp(updatedOtp);
 				 return "Registered User";
@@ -151,7 +152,6 @@ public class UserServiceImpl implements UserService {
 			 }
 			 else
 			 {
-//				 this.sendOtp(otp, mobile);
 				 Otp newOtp = new Otp(otp, mobile);
 				 otpDao.addOtp(newOtp);
 				 return "New User";

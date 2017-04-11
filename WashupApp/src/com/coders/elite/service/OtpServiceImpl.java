@@ -30,4 +30,11 @@ public class OtpServiceImpl implements OtpService {
  
  }
  
+ @Transactional
+ public void deleteOtp(int id) {
+  otpDao.deleteOtp(id);
+  
+ }
+
+ 
 }

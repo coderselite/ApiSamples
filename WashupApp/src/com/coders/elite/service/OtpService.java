@@ -8,5 +8,6 @@ public interface OtpService {
  public Otp getOtp(String mobile);
  public void addOtp(Otp otp);
  public void updateOtp(Otp otp);
+ public void deleteOtp(int id);
  
 }
