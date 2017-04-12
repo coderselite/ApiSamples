@@ -1,6 +1,5 @@
 package com.coders.elite.bean;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,17 +15,17 @@ import org.hibernate.annotations.Proxy;
 public class Catalog {
 
 	@Id
-	@Column
+	@Column(name="catalog_id")
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private Integer catalog_id;
 	
-	@Column
+	@Column(name="name")
 	private String name;
 	
-	@Column
+	@Column(name="rate")
 	private String rate;
 	
-	@Column
+	@Column(name="category")
 	private String category;
 	
 	
@@ -76,8 +75,5 @@ public class Catalog {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
-	
-	
-	
+		
 }

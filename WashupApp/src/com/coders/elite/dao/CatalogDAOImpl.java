@@ -5,9 +5,11 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.coders.elite.bean.Catalog;
 
+@Repository
 public class CatalogDAOImpl implements CatalogDAO {
 
 	 @Autowired
