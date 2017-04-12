@@ -35,6 +35,11 @@ public class OtpController {
  @RequestMapping(value = "/deleteOtp/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
  public void deleteOtp(@PathVariable("id") int id) {
 	 otpService.deleteOtp(id);  
- } 
+ }
+ 
+ @RequestMapping(value = "/validateOtp", method = RequestMethod.POST, headers = "Accept=application/json")
+ public Boolean getOtpByMobile(@RequestBody Otp otp) {
+  return otpService.validateOtp(otp);
+ }
  
 }

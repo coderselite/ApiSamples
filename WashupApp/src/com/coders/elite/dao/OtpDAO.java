@@ -15,5 +15,9 @@ public Otp getOtp(String mobile);
  
  public void deleteOtp(int id);
  
+ public void deleteExpiredOtp();
+ 
+ public String getValidOtp(String mobile);
+ 
  } 
 

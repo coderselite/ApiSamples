@@ -37,4 +37,21 @@ public class OtpServiceImpl implements OtpService {
  }
 
  
+ @Transactional
+ public void deleteExpiredOtp()
+ {
+	 otpDao.deleteExpiredOtp();
+ }
+
+
+ @Transactional
+ public Boolean validateOtp(Otp otpObj){
+	 String otp = otpObj.getOtp();
+	 String mobile = otpObj.getMobile();
+	 
+	 if (otpDao.getValidOtp(mobile) != null && otp.equals(otpDao.getValidOtp(mobile)))
+		 return true;
+	 
+	 return false;
+ }
 }

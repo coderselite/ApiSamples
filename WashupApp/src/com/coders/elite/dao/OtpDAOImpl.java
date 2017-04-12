@@ -52,7 +52,23 @@ public Otp getOtp(String mobile) {
 	   session.delete(o);
 	  }
 	 }
+public void deleteExpiredOtp()
+{
+	  Session session = this.sessionFactory.getCurrentSession();
+	  session.createSQLQuery("delete from Otp where timestamp < (select DATE_SUB( CURRENT_TIME(), INTERVAL 10 MINUTE) from Dual)").executeUpdate();
+}
 
+@SuppressWarnings("unchecked")
+public String getValidOtp(String mobile){
+	Session session = this.sessionFactory.getCurrentSession();
+	List<String> list= (List<String>)session.createSQLQuery("select otp from Otp where timestamp > (select DATE_SUB( CURRENT_TIME(), INTERVAL 10 MINUTE) from Dual)").list();
+	
+	if(list.size() > 0){
+		return list.get(0);
+	}
+	return null;
+	
+}
  
  } 
 

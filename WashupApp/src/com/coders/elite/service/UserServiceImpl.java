@@ -7,10 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
-import com.coders.elite.dao.OtpDAOImpl;
-import com.coders.elite.dao.UserDAOImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
@@ -20,9 +21,8 @@ import com.amazonaws.services.sns.model.PublishRequest;
 import com.amazonaws.services.sns.model.PublishResult;
 import com.coders.elite.bean.Otp;
 import com.coders.elite.bean.Users;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import com.coders.elite.dao.OtpDAOImpl;
+import com.coders.elite.dao.UserDAOImpl;
  
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -116,8 +116,12 @@ public class UserServiceImpl implements UserService {
 		    
 		    return otp;
 	 }
+	
 	 
-	 @SuppressWarnings("deprecation")
+	 /*
+	  * Method to send Otp to users mobile.
+	  */
+	@SuppressWarnings("deprecation")
 	@Transactional
 	 public void sendOtp(String otp, String mobile){
 		    AWSCredentials awsCredentials = new BasicAWSCredentials("AKIAJRZSLJUVMEW22JTQ", "8Ue50ksWws47ah1dAgtuvOaWbiEmFTxhqoNaUMRy");
@@ -136,6 +140,9 @@ public class UserServiceImpl implements UserService {
             );
 	 }
 	 
+	 /*
+	  * Method to verify mobile number for new User/Login for existing user.
+	  */
 	 @Transactional
 	 public String validateUser(String mobile){
 		 String otp = this.generateOtp();
@@ -144,9 +151,17 @@ public class UserServiceImpl implements UserService {
 			 if (user != null)
 			 {
 				 Otp oldOtp = otpDao.getOtp(mobile);
-				 int otpId = oldOtp.getId();
-				 Otp updatedOtp = new Otp(otpId, otp, mobile);
-				 otpDao.updateOtp(updatedOtp);
+				 if(oldOtp != null)
+				 {
+					 int otpId = oldOtp.getId();
+					 Otp updatedOtp = new Otp(otpId, otp, mobile);
+					 otpDao.updateOtp(updatedOtp); 
+				 }
+				 else
+				 {
+					 Otp newOtp = new Otp(otp, mobile);
+					 otpDao.addOtp(newOtp); 
+				 }
 				 return "Registered User";
 				 
 			 }
@@ -156,7 +171,6 @@ public class UserServiceImpl implements UserService {
 				 otpDao.addOtp(newOtp);
 				 return "New User";
 			 }
-	 }
-	 
+	 }	 
 	 
 }
