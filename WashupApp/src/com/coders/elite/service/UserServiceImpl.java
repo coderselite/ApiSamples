@@ -113,7 +113,7 @@ public class UserServiceImpl implements UserService {
 		    for(int i = 0; i < 4; i++){
 		        otp += numbers.get(i).toString();
 		    }
-		    
+	        System.out.println("Otp: " +otp);
 		    return otp;
 	 }
 	

@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.coders.elite.bean.Otp;
 import com.coders.elite.service.OtpService;
- 
+
+
 @RestController
 public class OtpController {
  
